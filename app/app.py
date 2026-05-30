@@ -8,13 +8,13 @@ import os
 from datetime import datetime
 from dotenv import load_dotenv
 
-# Absolute paths anchored to this file — immune to CWD issues
+# Absolute paths anchored to this file â€” immune to CWD issues
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _DOTENV_PATH = r"C:\Users\DELL\Desktop\uae-traffic-friction-intelligence\.env"
 load_dotenv(dotenv_path=_DOTENV_PATH, override=True)
 
 def get_api_key():
-    """Read key directly from os.environ — dotenv already loaded it at startup."""
+    """Read key directly from os.environ â€” dotenv already loaded it at startup."""
     # Try os.environ first (already populated by load_dotenv above)
     key = os.environ.get("TOMTOM_API_KEY", "").strip()
     if not key:
@@ -28,7 +28,7 @@ TOMTOM_API_KEY = get_api_key()
 # =========================================================
 # 0. PLATFORM INITIALIZATION
 # =========================================================
-st.set_page_config(page_title="UAE Mobility Intelligence", page_icon="🚦", layout="wide")
+st.set_page_config(page_title="UAE Mobility Intelligence", page_icon="ðŸš¦", layout="wide")
 
 # =========================================================
 # 1. CONFIGURATION & METADATA LAYER
@@ -45,7 +45,7 @@ CITY_COORDS = {
 }
 
 # UAE road-level corridor intelligence registry
-# Structure: Region → Corridor → { RoadName: {lat, lon} }
+# Structure: Region â†’ Corridor â†’ { RoadName: {lat, lon} }
 # Each road is an independent TomTom flowSegmentData monitoring point
 UAE_CORRIDORS = {
     "Dubai": {
@@ -107,7 +107,7 @@ UAE_CORRIDORS = {
         },
         "Khalifa City": {
             "Khalifa City Main Rd":       {"lat": 24.4219, "lon": 54.5353},
-            "Al Raha–Khalifa Rd":         {"lat": 24.4374, "lon": 54.5571},
+            "Al Rahaâ€“Khalifa Rd":         {"lat": 24.4374, "lon": 54.5571},
             "Airport Rd South":           {"lat": 24.4110, "lon": 54.5800},
             "Khalifa City A Rd":          {"lat": 24.4310, "lon": 54.5192},
         },
@@ -157,7 +157,7 @@ UAE_CORRIDORS = {
         },
         "Al Nahda": {
             "Al Nahda St":                {"lat": 25.2918, "lon": 55.3891},
-            "Al Nahda (SHJ–Dubai Bdr)":   {"lat": 25.2870, "lon": 55.3820},
+            "Al Nahda (SHJâ€“Dubai Bdr)":   {"lat": 25.2870, "lon": 55.3820},
             "Maliha Rd":                  {"lat": 25.2800, "lon": 55.4000},
             "Al Yarmook St":              {"lat": 25.2980, "lon": 55.3940},
         },
@@ -183,7 +183,7 @@ UAE_CORRIDORS = {
         },
         "Al Rashidiya": {
             "Al Rashidiya St":            {"lat": 25.4178, "lon": 55.4782},
-            "Ajman–UAQ Rd (South)":       {"lat": 25.4120, "lon": 55.4850},
+            "Ajmanâ€“UAQ Rd (South)":       {"lat": 25.4120, "lon": 55.4850},
             "Al Muntazah St":             {"lat": 25.4250, "lon": 55.4750},
             "New Industrial Rd":          {"lat": 25.4050, "lon": 55.4900},
         },
@@ -214,7 +214,7 @@ UAE_CORRIDORS = {
             "Al Saqr St":                 {"lat": 25.7850, "lon": 55.9410},
         },
         "RAK Airport Road": {
-            "RAK–Dubai Rd (E11)":         {"lat": 25.8345, "lon": 55.9388},
+            "RAKâ€“Dubai Rd (E11)":         {"lat": 25.8345, "lon": 55.9388},
             "RAK Airport Access":         {"lat": 25.8445, "lon": 55.9310},
             "Al Rams Rd":                 {"lat": 25.8900, "lon": 55.9500},
             "Al Jeer Rd":                 {"lat": 25.8650, "lon": 55.9480},
@@ -240,9 +240,9 @@ UAE_CORRIDORS = {
             "Al Faseel Beach Rd":         {"lat": 25.1510, "lon": 56.3560},
         },
         "Dibba Road": {
-            "Dibba–Fujairah Rd (E89)":    {"lat": 25.2102, "lon": 56.3601},
+            "Dibbaâ€“Fujairah Rd (E89)":    {"lat": 25.2102, "lon": 56.3601},
             "Al Aqah Beach Rd":           {"lat": 25.3080, "lon": 56.3550},
-            "E99 Fujairah–Kalba Rd":      {"lat": 25.0500, "lon": 56.3580},
+            "E99 Fujairahâ€“Kalba Rd":      {"lat": 25.0500, "lon": 56.3580},
             "Masafi Junction Rd":         {"lat": 25.3200, "lon": 56.1460},
         },
     },
@@ -262,8 +262,8 @@ UAE_CORRIDORS = {
         "King Faisal Rd UAQ": {
             "King Faisal Rd (North UAQ)": {"lat": 25.5800, "lon": 55.5460},
             "King Faisal Rd (Central)":   {"lat": 25.5593, "lon": 55.5689},
-            "UAQ–Ajman Junction":         {"lat": 25.5350, "lon": 55.5850},
-            "UAQ–RAK Junction":           {"lat": 25.6050, "lon": 55.5220},
+            "UAQâ€“Ajman Junction":         {"lat": 25.5350, "lon": 55.5850},
+            "UAQâ€“RAK Junction":           {"lat": 25.6050, "lon": 55.5220},
         },
     },
     "Al Ain": {
@@ -287,7 +287,7 @@ UAE_CORRIDORS = {
         },
         "Al Ain Airport Rd": {
             "Al Ain Airport Access":      {"lat": 24.2618, "lon": 55.6094},
-            "Al Ain–Abu Dhabi Rd (E22)":  {"lat": 24.2200, "lon": 55.6500},
+            "Al Ainâ€“Abu Dhabi Rd (E22)":  {"lat": 24.2200, "lon": 55.6500},
             "Al Ain Bypass Rd":           {"lat": 24.2000, "lon": 55.6200},
             "Al Foah Rd":                 {"lat": 24.2800, "lon": 55.7100},
         },
@@ -298,15 +298,18 @@ UAE_CORRIDORS = {
 # 2. PREMIUM CSS
 # =========================================================
 st.markdown("""
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+    /* Base */
     .stApp { background-color: #0A0F1C !important; color: #F8FAFC !important; font-family: 'Inter', sans-serif !important; }
+    body { font-size: 16px; }
     section[data-testid="stSidebar"] { background: linear-gradient(180deg, #101826 0%, #0B111C 100%) !important; border-right: 1px solid #1E293B !important; }
     div[data-baseweb="select"] { background-color: #161F2E !important; border: 1px solid #263244 !important; border-radius: 8px !important; }
     div[data-baseweb="select"] * { background-color: #161F2E !important; color: white !important; }
 
-    /* ── KPI Cards ── */
+    /* KPI Cards */
     div[data-testid="metric-container"] {
         background: linear-gradient(145deg, #131C2C, #101826) !important;
         border: 1px solid #1F2A3D !important; padding: 14px 12px !important;
@@ -314,89 +317,83 @@ st.markdown("""
         transition: border-color 0.2s, transform 0.2s;
     }
     div[data-testid="metric-container"]:hover { border: 1px solid #3A86FF !important; transform: translateY(-2px) !important; }
-    div[data-testid="stMetricLabel"] { font-size: 0.65rem !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px !important; color: #94A3B8 !important; }
-    div[data-testid="stMetricValue"] { font-size: 1.15rem !important; font-weight: 800 !important; line-height: 1.2 !important; white-space: normal !important; word-wrap: break-word !important; }
-    div[data-testid="stMetricDelta"] { font-size: 0.70rem !important; margin-top: 6px !important; }
+    div[data-testid="stMetricLabel"] { font-size: 0.72rem !important; font-weight: 700 !important; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px !important; color: #94A3B8 !important; }
+    div[data-testid="stMetricValue"] { font-size: 1.25rem !important; font-weight: 800 !important; line-height: 1.2 !important; white-space: normal !important; word-wrap: break-word !important; }
+    div[data-testid="stMetricDelta"] { font-size: 0.72rem !important; margin-top: 6px !important; }
 
-    /* ── Live mode KPI card accent ── */
+    /* Live mode KPI card accent */
     .live-metric-row div[data-testid="metric-container"] {
         border: 1px solid rgba(255, 0, 110, 0.22) !important;
         background: linear-gradient(145deg, #1A0D18, #140B14) !important;
     }
-    .live-metric-row div[data-testid="metric-container"]:hover {
-        border: 1px solid #FF006E !important;
-    }
+    .live-metric-row div[data-testid="metric-container"]:hover { border: 1px solid #FF006E !important; }
 
     .element-container:has(.js-plotly-plot) {
         background: linear-gradient(145deg, #111827, #0F172A) !important;
         padding: 16px !important; border-radius: 12px !important; border: 1px solid #1F2937 !important;
     }
     hr { border-color: #1E293B !important; margin: 2rem 0 !important; }
-    .sim-warning { color: #FF8FA3; font-size: 0.75rem; margin-top: -5px; margin-bottom: 10px; opacity: 0.8; }
+    .sim-warning { color: #FF8FA3; font-size: 0.80rem; margin-top: -5px; margin-bottom: 10px; opacity: 0.8; }
 
-    /* ── Environmental context ── */
+    /* Environmental context */
     .weather-context {
         background-color: rgba(0, 229, 255, 0.05);
         border-left: 3px solid #00E5FF;
-        padding: 10px 12px; margin-top: 15px;
+        padding: 10px 14px; margin-top: 15px;
         border-radius: 0 4px 4px 0;
-        font-size: 0.85rem; color: #E2E8F0;
+        font-size: 0.88rem; color: #E2E8F0; line-height: 1.5;
     }
     .weather-context strong { color: #00E5FF; }
     .live-badge {
         background-color: #FF006E; color: white;
         padding: 2px 6px; border-radius: 4px;
-        font-size: 0.65rem; font-weight: 800;
+        font-size: 0.68rem; font-weight: 800;
         margin-left: 6px; vertical-align: middle; letter-spacing: 0.05em;
     }
 
-    /* ── Live Status Strip ── */
+    /* Live Status Strip */
     .live-status-strip {
         background: linear-gradient(90deg, rgba(255,0,110,0.13) 0%, rgba(255,0,110,0.04) 100%);
         border: 1px solid rgba(255,0,110,0.28);
-        border-radius: 9px; padding: 11px 18px;
-        margin-bottom: 22px;
-        display: flex; align-items: center; gap: 12px;
-        font-size: 0.78rem; color: #CBD5E1;
+        border-radius: 9px; padding: 12px 16px;
+        margin-bottom: 18px;
+        display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+        font-size: 0.82rem; color: #CBD5E1;
     }
     .live-status-dot {
-        width: 8px; height: 8px; border-radius: 50%;
+        width: 9px; height: 9px; border-radius: 50%;
         background: #FF006E; display: inline-block; flex-shrink: 0;
         animation: pulse-dot 1.6s ease-in-out infinite;
     }
     @keyframes pulse-dot {
         0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,0,110,0.55); }
-        50%       { opacity: 0.7; box-shadow: 0 0 0 5px rgba(255,0,110,0); }
+        50%       { opacity: 0.7; box-shadow: 0 0 0 6px rgba(255,0,110,0); }
     }
 
-    /* ── Live pulse badge ── */
+    /* Live pulse badge */
     .live-pulse {
         display: inline-block; background: #FF006E; color: white;
         padding: 2px 9px; border-radius: 4px;
-        font-size: 0.60rem; font-weight: 800; letter-spacing: 0.10em;
+        font-size: 0.62rem; font-weight: 800; letter-spacing: 0.10em;
         animation: pulse-dot 1.6s ease-in-out infinite;
         vertical-align: middle;
     }
 
-    /* ── Road closure alert ── */
+    /* Road closure alert */
     .closure-alert {
         background: rgba(255, 0, 110, 0.11);
         border: 1px solid rgba(255, 0, 110, 0.45);
         border-radius: 8px; padding: 12px 18px;
-        font-size: 0.84rem; color: #FCA5A5;
+        font-size: 0.88rem; color: #FCA5A5;
         margin-bottom: 16px;
-        display: flex; align-items: center; gap: 10px;
+        display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
     }
-
-    /* ── Live offline / error ── */
     .live-offline {
         background: rgba(255, 0, 110, 0.06);
         border-left: 3px solid #FF006E;
         padding: 14px 18px; border-radius: 0 8px 8px 0;
-        font-size: 0.84rem; color: #94A3B8; margin-top: 8px;
+        font-size: 0.88rem; color: #94A3B8; margin-top: 8px;
     }
-
-    /* ── Live state panel ── */
     .live-state-panel {
         background: linear-gradient(145deg, #111827, #0F172A);
         border: 1px solid #1F2937;
@@ -404,12 +401,160 @@ st.markdown("""
         height: 100%; min-height: 260px;
     }
     .live-label {
-        font-size: 0.62rem; font-weight: 700;
+        font-size: 0.68rem; font-weight: 700;
         text-transform: uppercase; letter-spacing: 0.09em;
         color: #64748B; margin-bottom: 10px;
     }
     .live-metric-divider { border-top: 1px solid #1E293B; margin: 13px 0; }
 
+    /* Mobile filter expander - shown on narrow screens */
+    .mobile-filter-hint { display: none; }
+
+    /* -----------------------------------------------------
+       MOBILE-FIRST RESPONSIVE OVERRIDES (<= 768 px)
+    ----------------------------------------------------- */
+    @media screen and (max-width: 768px) {
+
+        /* Container padding tightened for phone screens */
+        .block-container {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+            padding-top: 48px !important;
+            padding-bottom: 80px !important;  /* room for bottom nav */
+            max-width: 100% !important;
+        }
+
+        /* Sidebar hidden - controls live in the inline expander */
+        section[data-testid="stSidebar"],
+        [data-testid="collapsedControl"] {
+            display: none !important;
+        }
+
+        /* Show the mobile filter hint */
+        .mobile-filter-hint { display: block !important; }
+
+        /* Stack every st.columns() layout */
+        [data-testid="stHorizontalBlock"] {
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+        [data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+            min-width: 100% !important;
+        }
+
+        /* KPI Cards - larger, full-width, thumb-friendly */
+        div[data-testid="metric-container"] {
+            padding: 18px 16px !important;
+            border-radius: 14px !important;
+            margin-bottom: 8px !important;
+        }
+        div[data-testid="stMetricValue"] {
+            font-size: 1.6rem !important;
+            font-weight: 800 !important;
+        }
+        div[data-testid="stMetricLabel"] {
+            font-size: 0.78rem !important;
+        }
+        div[data-testid="stMetricDelta"] {
+            font-size: 0.76rem !important;
+        }
+
+        /* Executive Intelligence cards */
+        [data-testid="column"] > div > div[style*="border-radius:10px"] {
+            padding: 16px !important;
+            margin-bottom: 10px !important;
+        }
+
+        /* Plotly charts full width, touch-friendly */
+        .js-plotly-plot, .plotly, .plot-container {
+            width: 100% !important;
+            touch-action: pan-y !important;
+        }
+        .element-container:has(.js-plotly-plot) {
+            padding: 10px !important;
+            border-radius: 10px !important;
+        }
+
+        /* Title */
+        h1 { font-size: 1.4rem !important; margin-bottom: 8px !important; }
+        h2 { font-size: 1.2rem !important; }
+        h3 { font-size: 1.0rem !important; }
+
+        /* Weather context */
+        .weather-context {
+            font-size: 0.92rem !important;
+            padding: 12px 14px !important;
+            line-height: 1.55 !important;
+        }
+
+        /* Live status strip */
+        .live-status-strip {
+            font-size: 0.86rem !important;
+            padding: 12px 14px !important;
+            gap: 8px !important;
+        }
+
+        /* Table - mobile-scrollable */
+        div[style*="overflow-x:auto"] table {
+            font-size: 0.78rem !important;
+        }
+        div[style*="overflow-x:auto"] {
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        /* Live header typography */
+        div[style*="font-size:0.85rem"] { font-size: 0.90rem !important; }
+        div[style*="font-size:0.67rem"] { font-size: 0.72rem !important; }
+
+        /* Deviation intelligence panel grid - stack */
+        div[style*="grid-template-columns:1fr 1fr 1fr 1.4fr"] {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 14px !important;
+        }
+
+        /* Expander touch target */
+        [data-testid="stExpander"] summary {
+            min-height: 48px !important;
+            font-size: 0.95rem !important;
+            padding: 12px 16px !important;
+        }
+
+        /* Selectboxes */
+        div[data-baseweb="select"] {
+            min-height: 44px !important;
+            font-size: 0.95rem !important;
+        }
+
+        /* Sidebar-replacement expander styling */
+        [data-testid="stExpander"] {
+            background: linear-gradient(145deg, #131C2C, #101826) !important;
+            border: 1px solid #1F2A3D !important;
+            border-radius: 12px !important;
+            margin-bottom: 14px !important;
+        }
+    }
+
+    /* -----------------------------------------------------
+       TABLET (769px - 1024px)
+    ----------------------------------------------------- */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        .block-container {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
+        div[data-testid="stMetricValue"] { font-size: 1.35rem !important; }
+
+        /* 4-column KPI row -> 2x2 grid on tablet */
+        .live-metric-row [data-testid="stHorizontalBlock"] {
+            flex-wrap: wrap !important;
+        }
+        .live-metric-row [data-testid="column"] {
+            flex: 1 1 48% !important;
+            min-width: 48% !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -560,7 +705,7 @@ def get_live_congestion_pct(current_speed, free_flow_speed):
 def get_live_delay_min(current_tt, free_flow_tt):
     return max(0.0, (current_tt - free_flow_tt) / 60.0)
 
-# ── Operational intelligence functions ────────────────────────────────────────
+# â”€â”€ Operational intelligence functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def get_corridor_pressure_index(agg_cong, peak_delay, n_live, n_total, any_closure):
     """Composite 0-100 corridor stress score. Explainable, telemetry-driven."""
@@ -603,7 +748,7 @@ def get_baseline_comparison(df, region, target_h, live_cs, live_ff):
     h_df = df[(df['City_UI'] == city) & (df['Hour'] == target_h)]
     if len(h_df) == 0:
         return None
-    infl = h_df['TravelTimeInflationPct'].mean()          # e.g. 15 → 15% above free-flow
+    infl = h_df['TravelTimeInflationPct'].mean()          # e.g. 15 â†’ 15% above free-flow
     hist_delay = h_df['TravelDelayMinutes'].mean()
     expected_ratio = 1.0 / max(1.0 + infl / 100.0, 0.5)  # speed ratio implied by inflation
     expected_speed = live_ff * expected_ratio              # apply to live free-flow speed
@@ -629,45 +774,45 @@ def get_baseline_comparison(df, region, target_h, live_cs, live_ff):
 
 
 # =========================================================
-# 5. SIDEBAR — OPERATIONS CONSOLE
+# 5. SIDEBAR - OPERATIONS CONSOLE
 # =========================================================
-st.sidebar.title("🚦 Operations Console")
-selected_city = st.sidebar.selectbox("🌐 Target Sector", options=sorted(df['City_UI'].unique()))
+st.sidebar.title("UAE Mobility Intelligence")
+selected_city = st.sidebar.selectbox("Target Sector", options=sorted(df['City_UI'].unique()))
 
-st.sidebar.markdown("### 🎛️ Operational Controls")
+st.sidebar.markdown("### Operational Controls")
 
-# Scenario and Live toggle are grouped — both are operational state controls
+# Scenario and Live toggle are grouped - both are operational state controls
 selected_severity = st.sidebar.selectbox(
-    "🚨 Scenario",
+    "Scenario",
     options=["Observed Conditions", "Low", "Moderate", "High", "Severe"]
 )
 if selected_severity != "Observed Conditions":
     st.sidebar.markdown("<small style='color:#FF006E; font-weight:600;'>Simulation Mode Active</small>", unsafe_allow_html=True)
 
-live_enabled = st.sidebar.toggle("🔴 Enable Live Telemetry", key="live_toggle")
+live_enabled = st.sidebar.toggle("Enable Live Telemetry", key="live_toggle")
 
 selected_region  = None
 selected_sector  = None
 if live_enabled:
-    # Step 1 — Region selector (all UAE emirates)
+    # Step 1 - Region selector (all UAE emirates)
     _live_regions = list(UAE_CORRIDORS.keys())
     selected_region = st.sidebar.selectbox(
-        "🗺️ Region",
+        "Region",
         options=_live_regions,
         key="live_region"
     )
-    # Step 2 — Corridor selector filtered to selected region only
+    # Step 2 - Corridor selector filtered to selected region only
     _region_corridors = list(UAE_CORRIDORS[selected_region].keys())
     selected_sector = st.sidebar.selectbox(
-        "📍 Corridor",
+        "Corridor",
         options=_region_corridors,
         key="live_sector"
     )
 
-# Time Window — only relevant in historical mode
+# Time Window - only relevant in historical mode
 # Live mode uses real-time, so the hour selector is hidden
 if not live_enabled:
-    st.sidebar.markdown("### ⏱️ Time Window")
+    st.sidebar.markdown("### Time Window")
     c1, c2 = st.sidebar.columns(2)
     with c1:
         h_clock = st.selectbox("Hour", options=[12,1,2,3,4,5,6,7,8,9,10,11],
@@ -750,9 +895,30 @@ if w_data:
         w_data['weather_code'], w_data['temperature_2m'], w_data['wind_speed_10m'])
 
 # =========================================================
-# 7. TITLE & LIVE STATUS STRIP
+# 7. MOBILE QUICK-ACCESS STATUS BAR
 # =========================================================
-st.title("🚦 UAE Mobility Intelligence")
+# On mobile, the sidebar is accessible via the hamburger menu (top-left).
+# This compact bar shows the current active mode and location for orientation.
+st.markdown("<div class='mobile-filter-hint'>", unsafe_allow_html=True)
+_mob_mode = "LIVE" if live_enabled else "HISTORICAL"
+_mob_loc  = f"{selected_sector}, {selected_region}" if live_enabled and selected_sector else selected_city
+st.markdown(
+    f"<div style='background:rgba(255,0,110,0.08); border:1px solid rgba(255,0,110,0.25); "
+    f"border-radius:10px; padding:10px 14px; margin-bottom:12px; display:flex; "
+    f"align-items:center; gap:10px; font-size:0.85rem;'>"
+    f"<span style='background:#FF006E; color:white; padding:2px 8px; border-radius:4px; "
+    f"font-size:0.70rem; font-weight:800; letter-spacing:0.06em;'>{_mob_mode}</span>"
+    f"<span style='color:#CBD5E1; flex:1;'>{_mob_loc}</span>"
+    f"<span style='color:#475569; font-size:0.72rem;'>Tap menu to change</span>"
+    f"</div>",
+    unsafe_allow_html=True
+)
+st.markdown("</div>", unsafe_allow_html=True)
+
+# =========================================================
+# 8. TITLE & LIVE STATUS STRIP
+# =========================================================
+st.title("UAE Mobility Intelligence")
 
 if live_enabled and selected_sector:
     now_ts = datetime.now().strftime("%H:%M:%S")
@@ -780,7 +946,7 @@ if live_enabled and selected_sector:
 # 8. HISTORICAL NETWORK STATUS KPIs (hidden in live mode)
 # =========================================================
 if not live_enabled:
-    st.markdown("## 📡 Network Status")
+    st.markdown("## Network Status")
     k1, k2, k3, k4, k5 = st.columns(5)
     k1.metric("Network State",     f_state,          f"Relative Load {context_f:.1f}x",         delta_color="off")
     k2.metric("Travel Speed",      p_display,        p_delta,                                    delta_color=p_color)
@@ -791,7 +957,7 @@ if not live_enabled:
 
 # =========================================================
 # 9. LIVE CORRIDOR TELEMETRY MODULE
-#    Shown when live is ON — replaces forecast & posture map
+#    Shown when live is ON â€” replaces forecast & posture map
 # =========================================================
 if live_enabled and selected_sector:
 
@@ -807,30 +973,30 @@ if live_enabled and selected_sector:
     corridor_roads = UAE_CORRIDORS[selected_region][selected_sector]
     n_total        = len(corridor_roads)
 
-    # ── API key check ─────────────────────────────────────────
+    # â”€â”€ API key check â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     _live_key = get_api_key()
     if not _live_key or _live_key == "your_tomtom_api_key_here":
         st.markdown(
-            "<div class='live-offline'>⚠️ <strong>Live telemetry offline</strong> — "
+            "<div class='live-offline'>âš ï¸ <strong>Live telemetry offline</strong> â€” "
             "<code>TOMTOM_API_KEY</code> not configured. Add your key to <code>.env</code> "
             "at the project root to enable roadway telemetry.</div>",
             unsafe_allow_html=True
         )
     else:
-        # ── Fetch all roads in corridor ──────────────────────────────
-        with st.spinner(f"Fetching live telemetry — {n_total} roadways in {selected_sector}…"):
+        # â”€â”€ Fetch all roads in corridor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        with st.spinner(f"Fetching live telemetry â€” {n_total} roadways in {selected_sector}â€¦"):
             road_results = fetch_corridor_telemetry(corridor_roads)
 
         if not road_results:
             st.markdown(
-                "<div class='live-offline'>⚠️ <strong>Unable to reach TomTom Traffic API.</strong> "
+                "<div class='live-offline'>âš ï¸ <strong>Unable to reach TomTom Traffic API.</strong> "
                 "Live corridor telemetry temporarily unavailable. Will retry on next auto-refresh (120 sec).</div>",
                 unsafe_allow_html=True
             )
         else:
             n_live = len(road_results)
 
-            # ── Corridor aggregate KPIs ──────────────────────────────
+            # â”€â”€ Corridor aggregate KPIs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             agg_cs      = np.mean([r["current_speed"]  for r in road_results])
             agg_ff      = np.mean([r["free_flow_speed"] for r in road_results])
             agg_cong    = np.mean([r["congestion_pct"]  for r in road_results])
@@ -839,7 +1005,7 @@ if live_enabled and selected_sector:
             avg_conf    = np.mean([r["confidence"]      for r in road_results])
             agg_state, agg_color = classify_live_state(agg_cs, agg_ff, any_closure)
 
-            # ── Operational intelligence derivations ──────────────
+            # â”€â”€ Operational intelligence derivations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             most_impacted  = max(road_results, key=lambda r: r["congestion_pct"])
             highest_delay  = max(road_results, key=lambda r: r["delay_min"])
             worst_cong     = most_impacted
@@ -848,12 +1014,12 @@ if live_enabled and selected_sector:
             conf_tier, conf_color = get_confidence_tier(avg_conf, n_live, n_total)
             now_gst        = datetime.now().strftime("%H:%M")
 
-            # ── Live header (with timestamp + confidence) ───────────
+            # â”€â”€ Live header (with timestamp + confidence) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             st.markdown(
                 f"<div style='font-size:0.85rem; font-weight:700; color:#94A3B8; "
                 f"letter-spacing:0.05em; text-transform:uppercase; margin-bottom:12px; "
                 f"display:flex; align-items:center; gap:16px; flex-wrap:wrap;'>"
-                f"<span>📡 Corridor Intelligence &nbsp;<span class='live-pulse'>LIVE</span></span>"
+                f"<span>ðŸ“¡ Corridor Intelligence &nbsp;<span class='live-pulse'>LIVE</span></span>"
                 f"<span style='font-size:0.66rem; color:#475569; font-weight:400; text-transform:none; letter-spacing:0;'>"
                 f"{n_live}/{n_total} roads online</span>"
                 f"<span style='font-size:0.66rem; color:{conf_color}; font-weight:600; text-transform:none; letter-spacing:0; "
@@ -864,16 +1030,16 @@ if live_enabled and selected_sector:
                 unsafe_allow_html=True
             )
 
-            # ── Aggregate KPI row ────────────────────────────────
+            # â”€â”€ Aggregate KPI row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             st.markdown("<div class='live-metric-row'>", unsafe_allow_html=True)
             lk1, lk2, lk3, lk4 = st.columns(4)
-            lk1.metric("🚦 Corridor State", agg_state, f"Avg {agg_cs:.0f} km/h", delta_color="off")
-            lk2.metric("📊 Avg Congestion", f"{agg_cong:.0f}%", "network-wide avg", delta_color="inverse" if agg_cong > 20 else "normal")
-            lk3.metric("⏱️ Peak Delay", f"{peak_delay:.1f} min", "worst single road", delta_color="inverse" if peak_delay > 1 else "normal")
-            lk4.metric("📊 Pressure Index", f"{pressure_idx} / 100", "calculated load", delta_color="off")
+            lk1.metric("ðŸš¦ Corridor State", agg_state, f"Avg {agg_cs:.0f} km/h", delta_color="off")
+            lk2.metric("ðŸ“Š Avg Congestion", f"{agg_cong:.0f}%", "network-wide avg", delta_color="inverse" if agg_cong > 20 else "normal")
+            lk3.metric("â±ï¸ Peak Delay", f"{peak_delay:.1f} min", "worst single road", delta_color="inverse" if peak_delay > 1 else "normal")
+            lk4.metric("ðŸ“Š Pressure Index", f"{pressure_idx} / 100", "calculated load", delta_color="off")
             st.markdown("</div>", unsafe_allow_html=True)
 
-            # ── Executive Intelligence Strip ───────────────────────
+            # â”€â”€ Executive Intelligence Strip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             ei1, ei2, ei3 = st.columns(3)
 
             def _ei_card(col, icon, label, value, sub, vc="#E2E8F0"):
@@ -888,32 +1054,32 @@ if live_enabled and selected_sector:
                     unsafe_allow_html=True
                 )
 
-            _ei_card(ei1, "🟥", "Most Impacted Road",
+            _ei_card(ei1, "ðŸŸ¥", "Most Impacted Road",
                      most_impacted["road"],
-                     f"{most_impacted['congestion_pct']:.0f}% congestion · {most_impacted['state']}",
+                     f"{most_impacted['congestion_pct']:.0f}% congestion Â· {most_impacted['state']}",
                      vc=most_impacted["state_color"])
-            _ei_card(ei2, "⏳", "Highest Delay Road",
+            _ei_card(ei2, "â³", "Highest Delay Road",
                      highest_delay["road"],
                      f"+{highest_delay['delay_min']:.1f} min above free-flow",
                      vc="#FFD600" if highest_delay["delay_min"] > 1 else "#00E5FF")
-            _ei_card(ei3, "📍", "Worst Congestion Segment",
+            _ei_card(ei3, "ðŸ“", "Worst Congestion Segment",
                      worst_cong["road"],
-                     f"{worst_cong['current_speed']} km/h · free-flow {worst_cong['free_flow_speed']} km/h",
+                     f"{worst_cong['current_speed']} km/h Â· free-flow {worst_cong['free_flow_speed']} km/h",
                      vc="#FF8F00" if worst_cong["congestion_pct"] > 35 else "#FFD600")
 
-            # ── Environmental context (above ranking) ───────────────
+            # â”€â”€ Environmental context (above ranking) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             if w_data:
                 st.markdown(
                     f"<div class='weather-context'>"
                     f"<strong>Environmental Context <span class='live-badge'>LIVE</span> "
-                    f"({weather_state} | {round(w_data['temperature_2m'])}°C):</strong> {weather_context}"
+                    f"({weather_state} | {round(w_data['temperature_2m'])}Â°C):</strong> {weather_context}"
                     f"</div>",
                     unsafe_allow_html=True
                 )
 
             st.markdown("<div style='margin:14px 0 0;'></div>", unsafe_allow_html=True)
 
-            # ── Ranked roadway table ──────────────────────────────
+            # â”€â”€ Ranked roadway table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             sorted_roads = sorted(road_results, key=lambda r: r["congestion_pct"], reverse=True)
 
             def _cong_col(p):
@@ -925,7 +1091,7 @@ if live_enabled and selected_sector:
             rows_html = ""
             for i, r in enumerate(sorted_roads, 1):
                 cc  = _cong_col(r["congestion_pct"])
-                tag = " 🚧" if r["road_closure"] else ""
+                tag = " ðŸš§" if r["road_closure"] else ""
                 # Severity bar width
                 bar_w = min(int(r["congestion_pct"]), 100)
                 rows_html += (
@@ -954,7 +1120,7 @@ if live_enabled and selected_sector:
                 f"""<div style='background:linear-gradient(145deg,#111827,#0F172A); border:1px solid #1F2937; border-radius:12px; overflow:hidden; margin-bottom:0;'>
 <div style='padding:13px 18px; border-bottom:1px solid #1E293B;'>
   <span style='font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.09em; color:#64748B;'>
-    📋 Roadway Ranking — {selected_sector.upper()} &nbsp;·&nbsp; Sorted by congestion severity
+    ðŸ“‹ Roadway Ranking â€” {selected_sector.upper()} &nbsp;Â·&nbsp; Sorted by congestion severity
   </span>
 </div>
 <div style='overflow-x:auto;'>
@@ -977,7 +1143,7 @@ if live_enabled and selected_sector:
                 unsafe_allow_html=True
             )
 
-            # ── Phase 2: Operational Deviation Intelligence ──────────
+            # â”€â”€ Phase 2: Operational Deviation Intelligence â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             baseline = get_baseline_comparison(df, selected_region, target_h, agg_cs, agg_ff)
             if baseline:
                 vp         = baseline["variance_pct"]
@@ -990,10 +1156,10 @@ if live_enabled and selected_sector:
                     border:1px solid #1E293B; border-radius:12px; padding:0; overflow:hidden;'>
   <div style='padding:12px 18px; border-bottom:1px solid #1E293B; display:flex; align-items:center; gap:10px;'>
     <span style='font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.09em; color:#64748B;'>
-      ⚡ Operational Deviation Intelligence
+      âš¡ Operational Deviation Intelligence
     </span>
     <span style='margin-left:auto; font-size:0.63rem; color:#475569;'>
-      vs {baseline['city']} historical baseline · {target_h:02d}:00 GST · {baseline['n_samples']} datapoints
+      vs {baseline['city']} historical baseline Â· {target_h:02d}:00 GST Â· {baseline['n_samples']} datapoints
     </span>
   </div>
   <div style='display:grid; grid-template-columns:1fr 1fr 1fr 1.4fr; padding:16px 18px; gap:24px;'>
@@ -1024,7 +1190,7 @@ if live_enabled and selected_sector:
 
             st.markdown("<div style='margin:14px 0 0;'></div>", unsafe_allow_html=True)
 
-            # ── Corridor map ──────────────────────────────────────
+            # â”€â”€ Corridor map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             fig_live   = go.Figure()
             # Intelligent map focus: center on most congested road, not geometric mean
             focus_road  = most_impacted
@@ -1043,7 +1209,7 @@ if live_enabled and selected_sector:
                         showlegend=False
                     ))
 
-            # Road markers — color = operational state
+            # Road markers â€” color = operational state
             fig_live.add_trace(go.Scattermapbox(
                 lat=[r["lat"] for r in road_results],
                 lon=[r["lon"] for r in road_results],
@@ -1074,8 +1240,8 @@ if live_enabled and selected_sector:
             spread     = max(lat_spread, lon_spread)
             auto_zoom  = 12 if spread > 0.08 else 13 if spread > 0.04 else 14 if spread > 0.015 else 15
 
-            # ── TomTom traffic flow tile layer ─────────────────────
-            # relative0-dark: dark-optimised, green=free-flow → red=gridlock
+            # â”€â”€ TomTom traffic flow tile layer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            # relative0-dark: dark-optimised, green=free-flow â†’ red=gridlock
             tile_url = (
                 f"https://api.tomtom.com/traffic/map/4/tile/flow/"
                 f"relative0-dark/{{z}}/{{x}}/{{y}}.png?key={_live_key}"
@@ -1102,18 +1268,18 @@ if live_enabled and selected_sector:
                 hoverlabel=dict(bgcolor="#161F2E", bordercolor="#FF006E", font_size=13)
             )
 
-            # ── Map header ────────────────────────────────────
+            # â”€â”€ Map header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             st.markdown(
                 f"<div style='font-size:0.67rem; font-weight:700; text-transform:uppercase; "
                 f"letter-spacing:0.09em; color:#64748B; margin-bottom:6px;'>"
-                f"🗺️ Live Traffic Flow Map — {selected_sector}, {selected_region} "
+                f"ðŸ—ºï¸ Live Traffic Flow Map â€” {selected_sector}, {selected_region} "
                 f"&nbsp;<span style='color:#FF006E; font-size:0.62rem;'>TomTom Flow Tiles ACTIVE</span></div>",
                 unsafe_allow_html=True
             )
 
-            st.plotly_chart(fig_live, use_container_width=True, config={"displayModeBar": False})
+            st.plotly_chart(fig_live, width='stretch', config={"displayModeBar": False})
 
-            # ── Traffic flow legend ────────────────────────────
+            # â”€â”€ Traffic flow legend â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             st.markdown(
                 "<div style='display:flex; align-items:center; gap:20px; "
                 "padding:8px 14px; background:rgba(255,255,255,0.03); "
@@ -1124,13 +1290,13 @@ if live_enabled and selected_sector:
                 "<span><span style='display:inline-block; width:12px; height:12px; border-radius:50%; background:#FFA500; margin-right:5px; vertical-align:middle;'></span>Moderate</span>"
                 "<span><span style='display:inline-block; width:12px; height:12px; border-radius:50%; background:#FF4500; margin-right:5px; vertical-align:middle;'></span>Congested</span>"
                 "<span><span style='display:inline-block; width:12px; height:12px; border-radius:50%; background:#8B0000; margin-right:5px; vertical-align:middle;'></span>Severe</span>"
-                "<span style='margin-left:auto; font-size:0.63rem; color:#475569;'>Source: TomTom Traffic Flow Tiles · Pins = monitored road segments</span>"
+                "<span style='margin-left:auto; font-size:0.63rem; color:#475569;'>Source: TomTom Traffic Flow Tiles Â· Pins = monitored road segments</span>"
                 "</div>",
                 unsafe_allow_html=True
             )
 
     st.caption(
-        f"🛰️ Live Corridor Telemetry — {selected_sector}, {selected_region}  "
+        f"ðŸ›°ï¸ Live Corridor Telemetry â€” {selected_sector}, {selected_region}  "
         f"| TomTom Traffic Flow API  "
         f"| Auto-refreshes every 120 seconds"
     )
@@ -1145,14 +1311,14 @@ elif live_enabled and not selected_sector:
     st.info("Select a corridor from the sidebar to load live roadway telemetry.")
 
 else:
-    # ── Simulation mode suspension notice ────────────────
+    # â”€â”€ Simulation mode suspension notice â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if live_enabled and selected_severity != "Observed Conditions":
         st.markdown("---")
         st.markdown(
             "<div style='background:rgba(124,58,237,0.08); border-left:3px solid #7C3AED; "
             "padding:12px 18px; border-radius:0 8px 8px 0; font-size:0.84rem; color:#94A3B8;'>"
-            "🔒 <strong style='color:#CBD5E1;'>Live telemetry suspended during simulation mode.</strong> "
-            "Simulations are synthetic operational stress models — mixing them with live roadway data "
+            "ðŸ”’ <strong style='color:#CBD5E1;'>Live telemetry suspended during simulation mode.</strong> "
+            "Simulations are synthetic operational stress models â€” mixing them with live roadway data "
             "would compromise analytical integrity. Return to <em>Observed Conditions</em> to enable live telemetry."
             "</div>",
             unsafe_allow_html=True
@@ -1160,10 +1326,10 @@ else:
 
     st.markdown("---")
 
-    # ── Operational Diagnosis ─────────────────────────────
+    # â”€â”€ Operational Diagnosis â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     col_diag, col_empty = st.columns([2, 1])
     with col_diag:
-        st.markdown("### 🧠 Operational Diagnosis")
+        st.markdown("### ðŸ§  Operational Diagnosis")
         st.info(f"**Current Classification:** {f_state}")
 
         if f_state == "Severe Congestion Pressure":
@@ -1181,12 +1347,12 @@ else:
             st.markdown(
                 f"<div class='weather-context'>"
                 f"<strong>Current Environmental Conditions <span class='live-badge'>LIVE</span> "
-                f"({weather_state} | {round(w_data['temperature_2m'])}°C):</strong> {weather_context}"
+                f"({weather_state} | {round(w_data['temperature_2m'])}Â°C):</strong> {weather_context}"
                 f"</div>",
                 unsafe_allow_html=True
             )
 
-    # ── Forecast / Simulation Chart ───────────────────────
+    # â”€â”€ Forecast / Simulation Chart â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     hours_to_plot      = [(target_h - 2) % 24, (target_h - 1) % 24, target_h, (target_h + 1) % 24, (target_h + 2) % 24]
     baseline_trajectory = []
     sim_trajectory      = []
@@ -1212,10 +1378,10 @@ else:
                     sim_trajectory.append({'Hour': f"{h:02d}:00", 'ForecastSeverity': b_sev, 'Trajectory': f'{selected_severity} Simulation'})
 
     if selected_severity != "Observed Conditions":
-        st.markdown("<br>### ⚖️ Operational Scenario Comparison", unsafe_allow_html=True)
+        st.markdown("<br>### âš–ï¸ Operational Scenario Comparison", unsafe_allow_html=True)
         st.markdown("<div class='sim-warning'>Scenario values computationally amplified for operational comparison. Forecasting is disabled during simulation mode to preserve analytical realism.</div>", unsafe_allow_html=True)
     else:
-        st.markdown("<br>### 🔮 Next 4-Hour Mobility Forecast", unsafe_allow_html=True)
+        st.markdown("<br>### ðŸ”® Next 4-Hour Mobility Forecast", unsafe_allow_html=True)
         st.caption("Based on observed historical mobility behavior")
 
     combined_df = pd.DataFrame(baseline_trajectory + sim_trajectory) if selected_severity != "Observed Conditions" else pd.DataFrame(baseline_trajectory)
@@ -1235,11 +1401,11 @@ else:
         legend=dict(orientation="h", y=1.1, x=1),
         margin=dict(t=30, b=0, l=0, r=0), height=400
     )
-    st.plotly_chart(fig, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig, width='stretch', config={'displayModeBar': False})
 
-    # ── National Operational Posture Map ──────────────────
+    # â”€â”€ National Operational Posture Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     st.markdown("---")
-    st.markdown("## 🗺️ National Operational Posture")
+    st.markdown("## ðŸ—ºï¸ National Operational Posture")
 
     m_df = df[df['Hour'] == target_h].groupby('City_UI')[
         ['TrafficFrictionScore', 'TravelTimeInflationPct', 'JamLengthKm', 'TravelDelayMinutes', 'NetworkShockEscalation']
@@ -1286,9 +1452,9 @@ else:
         coloraxis_showscale=False,
         hoverlabel=dict(bgcolor="#161F2E", bordercolor="#FF006E", font_size=14)
     )
-    st.plotly_chart(fig_map, use_container_width=True, config={'displayModeBar': False})
+    st.plotly_chart(fig_map, width='stretch', config={'displayModeBar': False})
     st.caption(
-        "UAE Mobility Intelligence Console • Baseline Reality Edition"
+        "UAE Mobility Intelligence Console â€¢ Baseline Reality Edition"
         if selected_severity == "Observed Conditions"
-        else "UAE Mobility Intelligence Console • Simulation Engine Active"
+        else "UAE Mobility Intelligence Console â€¢ Simulation Engine Active"
     )
